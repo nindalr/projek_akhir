@@ -529,8 +529,7 @@ with tab1:
                     yaxis_title="Pelanggan Mengantre (Orang)",
                     xaxis=dict(range=[0, 480], gridcolor="rgba(122,85,34,0.15)"),
                     yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(122,85,34,0.15)"),
-                    template="plotly_dark"
-        ).update_layout(),
+                    template="plotly_dark",
                     plot_bgcolor="rgba(26,16,5,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     height=360,
@@ -554,8 +553,7 @@ with tab1:
                 yaxis_title="Pelanggan Mengantre (Orang)",
                 xaxis=dict(range=[0, 480], gridcolor="rgba(122,85,34,0.15)"),
                 yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(122,85,34,0.15)"),
-                template="plotly_dark"
-        ).update_layout(),
+                template="plotly_dark",
                 plot_bgcolor="rgba(26,16,5,0)",
                 paper_bgcolor="rgba(0,0,0,0)",
                 height=360,
@@ -592,8 +590,7 @@ with tab1:
         fig_hist.update_layout(
             xaxis_title="Waktu Tunggu Pelanggan (Menit)",
             yaxis_title="Jumlah Pelanggan (Orang)",
-            template="plotly_dark"
-        ).update_layout(),
+            template="plotly_dark",
             plot_bgcolor="rgba(26,16,5,0)",
             paper_bgcolor="rgba(0,0,0,0)",
             height=360,
@@ -694,8 +691,7 @@ with tab2:
         yaxis_title="Harga Emas (Rupiah / Gram)",
         xaxis=dict(tickmode="linear", tick0=0, dtick=2, gridcolor="rgba(122,85,34,0.15)"),
         yaxis=dict(gridcolor="rgba(122,85,34,0.15)", tickformat=",.0f"),
-        template="plotly_dark"
-        ).update_layout(),
+        template="plotly_dark",
         plot_bgcolor="rgba(26,16,5,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         height=450,
@@ -738,8 +734,7 @@ with tab3:
         fig_violin.update_layout(
             yaxis_title="Profit Bersih (Rupiah)",
             yaxis=dict(gridcolor="rgba(122,85,34,0.15)", tickformat=",.0f"),
-            template="plotly_dark"
-        ).update_layout(),
+            template="plotly_dark",
             plot_bgcolor="rgba(26,16,5,0)",
             paper_bgcolor="rgba(0,0,0,0)",
             height=380,
