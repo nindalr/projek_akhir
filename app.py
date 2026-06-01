@@ -21,117 +21,234 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS untuk Estetika Premium Dark Mode, Tipografi, & Glassmorphism
+# Custom CSS — Vintage Antique Gold Theme
 st.markdown("""
 <style>
-    /* Mengimpor Google Font Premium */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    /* Font Vintage: Playfair Display (serif elegan) + Lato (body) */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
 
-    /* Global Typography & Background Override */
+    /* === GLOBAL BACKGROUND & TYPOGRAPHY === */
     html, body, [class*="css"], .main {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-        background-color: #080A0C !important;
-        color: #E2E8F0 !important;
+        font-family: 'Lato', serif !important;
+        background-color: #1C1208 !important;
+        color: #E8D5A3 !important;
     }
-    
-    /* Panel Sidebar Custom Styling */
+
+    /* Tekstur noise grain overlay untuk feel vintage */
+    .main::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+    }
+
+    /* === SIDEBAR === */
     section[data-testid="stSidebar"] {
-        background-color: #0D1013 !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.03) !important;
+        background-color: #140E04 !important;
+        border-right: 1px solid #5C3D11 !important;
     }
-    
-    /* Styling Card Metrik Glassmorphism Premium */
+    section[data-testid="stSidebar"] * {
+        color: #D4AF37 !important;
+    }
+    section[data-testid="stSidebar"] .stSlider label,
+    section[data-testid="stSidebar"] .stSlider p {
+        color: #C9A84C !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 13px !important;
+    }
+
+    /* === METRIC CARDS (vintage parchment) === */
     .metric-card {
-        background: linear-gradient(145deg, #0F1216 0%, #0A0D10 100%);
-        border: 1px solid rgba(212, 175, 55, 0.08);
-        border-radius: 16px;
-        padding: 24px;
+        background: linear-gradient(160deg, #2A1D08 0%, #1E1406 100%);
+        border: 1px solid #7A5522;
+        border-top: 2px solid #C9A84C;
+        border-radius: 4px;
+        padding: 22px 20px;
         text-align: center;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(212,175,55,0.05);
+        transition: all 0.3s ease;
         margin-bottom: 12px;
+        position: relative;
+    }
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 6px; left: 6px; right: 6px; bottom: 6px;
+        border: 1px solid rgba(122, 85, 34, 0.25);
+        border-radius: 2px;
+        pointer-events: none;
     }
     .metric-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 24px rgba(212, 175, 55, 0.06);
-        border-color: rgba(212, 175, 55, 0.25);
+        transform: translateY(-3px);
+        border-top-color: #D4AF37;
+        box-shadow: 0 8px 28px rgba(180, 130, 40, 0.15);
     }
-    
     .metric-title {
-        font-size: 11px;
-        font-weight: 600;
-        color: #8E9BAE;
+        font-family: 'Lato', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        color: #A07840;
         text-transform: uppercase;
+        letter-spacing: 2.5px;
         margin-bottom: 10px;
-        letter-spacing: 1.5px;
     }
     .metric-value {
-        font-size: 28px;
+        font-family: 'Playfair Display', serif;
+        font-size: 26px;
         font-weight: 700;
-        color: #D4AF37; /* Emas Champagne */
+        color: #D4AF37;
         margin-bottom: 6px;
-        letter-spacing: -0.5px;
+        text-shadow: 0 2px 8px rgba(212,175,55,0.2);
     }
     .metric-sub {
-        font-size: 12px;
-        color: #64748B;
-        font-weight: 400;
+        font-size: 11px;
+        color: #8C7040;
+        font-family: 'Lato', sans-serif;
     }
-    
-    /* Highlight Alert */
-    .alert-green { color: #10B981; font-weight: 600; }
-    .alert-yellow { color: #F59E0B; font-weight: 600; }
-    .alert-red { color: #EF4444; font-weight: 600; }
-    
-    /* Custom Title Banner */
+
+    /* === ALERT COLORS (muted vintage palette) === */
+    .alert-green  { color: #7FB069; font-weight: 700; }
+    .alert-yellow { color: #D4A843; font-weight: 700; }
+    .alert-red    { color: #C0543A; font-weight: 700; }
+
+    /* === TITLE BANNER === */
     .title-banner {
-        background: linear-gradient(135deg, #0F1216 0%, #15120C 100%);
-        padding: 32px;
-        border-radius: 18px;
+        background: linear-gradient(160deg, #241708 0%, #1A1005 100%);
+        padding: 36px 32px;
+        border-radius: 4px;
         text-align: center;
-        border: 1px solid rgba(212, 175, 55, 0.12);
+        border: 1px solid #7A5522;
+        border-top: 3px solid #C9A84C;
         margin-bottom: 30px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+        position: relative;
+    }
+    .title-banner::before {
+        content: '';
+        position: absolute;
+        top: 8px; left: 8px; right: 8px; bottom: 8px;
+        border: 1px solid rgba(122, 85, 34, 0.2);
+        pointer-events: none;
     }
     .title-banner h1 {
+        font-family: 'Playfair Display', serif !important;
         color: #D4AF37 !important;
-        font-family: 'Plus Jakarta Sans', sans-serif;
         font-weight: 700;
-        font-size: 26px;
-        letter-spacing: -0.5px;
+        font-size: 28px;
+        letter-spacing: 0.5px;
         margin: 0;
+        text-shadow: 0 2px 12px rgba(180,130,40,0.3);
     }
     .title-banner p {
-        color: #94A3B8;
-        font-size: 14px;
-        margin-top: 8px;
+        font-family: 'Lato', sans-serif;
+        color: #A07840;
+        font-size: 13px;
+        margin-top: 10px;
         margin-bottom: 0;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.8px;
+        font-style: italic;
     }
-    
-    /* Customization Tabs Streamlit */
+
+    /* Ornamental divider lines */
+    hr {
+        border: none !important;
+        border-top: 1px solid #5C3D11 !important;
+        margin: 20px 0 !important;
+    }
+
+    /* === TABS === */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 10px;
+        gap: 8px;
+        border-bottom: 1px solid #5C3D11 !important;
     }
     .stTabs [data-baseweb="tab"] {
-        height: 45px;
-        white-space: pre-wrap;
-        background-color: #0E1216;
-        border-radius: 8px;
-        color: #94A3B8;
-        border: 1px solid rgba(255, 255, 255, 0.02);
+        height: 44px;
+        background-color: #1E1406;
+        border-radius: 3px 3px 0 0;
+        color: #8C7040;
+        border: 1px solid #5C3D11;
+        border-bottom: none;
         padding: 10px 20px;
-        font-weight: 500;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-size: 12px;
+        text-transform: uppercase;
         transition: all 0.2s ease;
     }
     .stTabs [data-baseweb="tab"]:hover {
         color: #D4AF37;
-        background-color: #12181D;
+        background-color: #241708;
     }
     .stTabs [aria-selected="true"] {
         color: #D4AF37 !important;
-        background-color: #151A1E !important;
-        border-color: rgba(212, 175, 55, 0.2) !important;
+        background-color: #2A1D08 !important;
+        border-color: #7A5522 !important;
+        border-bottom-color: #2A1D08 !important;
+    }
+
+    /* === HEADINGS === */
+    h1, h2, h3, h4 {
+        font-family: 'Playfair Display', serif !important;
+        color: #C9A84C !important;
+    }
+
+    /* === STREAMLIT NATIVE METRICS === */
+    [data-testid="metric-container"] {
+        background: linear-gradient(160deg, #2A1D08, #1E1406);
+        border: 1px solid #7A5522;
+        border-top: 2px solid #C9A84C;
+        border-radius: 4px;
+        padding: 16px;
+    }
+    [data-testid="metric-container"] label {
+        color: #A07840 !important;
+        font-family: 'Lato', sans-serif !important;
+        font-size: 11px !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+    }
+    [data-testid="metric-container"] [data-testid="stMetricValue"] {
+        color: #D4AF37 !important;
+        font-family: 'Playfair Display', serif !important;
+        font-size: 22px !important;
+    }
+    [data-testid="metric-container"] [data-testid="stMetricDelta"] {
+        color: #8C7040 !important;
+    }
+
+    /* === BUTTONS === */
+    .stButton > button {
+        background: linear-gradient(160deg, #3D2610, #2A1A07) !important;
+        color: #D4AF37 !important;
+        border: 1px solid #7A5522 !important;
+        border-radius: 3px !important;
+        font-family: 'Lato', sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        font-size: 12px !important;
+        transition: all 0.25s ease !important;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(160deg, #4D3118, #3A2410) !important;
+        border-color: #D4AF37 !important;
+        box-shadow: 0 4px 16px rgba(180,130,40,0.2) !important;
+    }
+
+    /* === INFO/WARNING/SUCCESS BOXES === */
+    .stInfo, .stSuccess, .stWarning, .stError {
+        border-radius: 3px !important;
+        font-family: 'Lato', sans-serif !important;
+    }
+
+    /* === DIVIDER === */
+    [data-testid="stDivider"] {
+        border-color: #5C3D11 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -410,10 +527,11 @@ with tab1:
                 fig_anim.update_layout(
                     xaxis_title="Waktu Operasional (Menit dari pukul 09:00)",
                     yaxis_title="Pelanggan Mengantre (Orang)",
-                    xaxis=dict(range=[0, 480], gridcolor="rgba(255,255,255,0.03)"),
-                    yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(255,255,255,0.03)"),
-                    template="plotly_dark",
-                    plot_bgcolor="rgba(0,0,0,0)",
+                    xaxis=dict(range=[0, 480], gridcolor="rgba(122,85,34,0.15)"),
+                    yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(122,85,34,0.15)"),
+                    template="plotly_dark"
+        ).update_layout(),
+                    plot_bgcolor="rgba(26,16,5,0)",
                     paper_bgcolor="rgba(0,0,0,0)",
                     height=360,
                     margin=dict(l=40, r=40, t=30, b=40)
@@ -434,10 +552,11 @@ with tab1:
             fig_anim.update_layout(
                 xaxis_title="Waktu Operasional (Menit dari pukul 09:00)",
                 yaxis_title="Pelanggan Mengantre (Orang)",
-                xaxis=dict(range=[0, 480], gridcolor="rgba(255,255,255,0.03)"),
-                yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(255,255,255,0.03)"),
-                template="plotly_dark",
-                plot_bgcolor="rgba(0,0,0,0)",
+                xaxis=dict(range=[0, 480], gridcolor="rgba(122,85,34,0.15)"),
+                yaxis=dict(range=[0, max(df_q_history["Panjang Antrean"]) + 2], gridcolor="rgba(122,85,34,0.15)"),
+                template="plotly_dark"
+        ).update_layout(),
+                plot_bgcolor="rgba(26,16,5,0)",
                 paper_bgcolor="rgba(0,0,0,0)",
                 height=360,
                 margin=dict(l=40, r=40, t=30, b=40)
@@ -473,8 +592,9 @@ with tab1:
         fig_hist.update_layout(
             xaxis_title="Waktu Tunggu Pelanggan (Menit)",
             yaxis_title="Jumlah Pelanggan (Orang)",
-            template="plotly_dark",
-            plot_bgcolor="rgba(0,0,0,0)",
+            template="plotly_dark"
+        ).update_layout(),
+            plot_bgcolor="rgba(26,16,5,0)",
             paper_bgcolor="rgba(0,0,0,0)",
             height=360,
             margin=dict(l=40, r=40, t=30, b=40)
@@ -572,13 +692,14 @@ with tab2:
     fig_mc.update_layout(
         xaxis_title="Hari Proyeksi",
         yaxis_title="Harga Emas (Rupiah / Gram)",
-        xaxis=dict(tickmode="linear", tick0=0, dtick=2, gridcolor="rgba(255,255,255,0.03)"),
-        yaxis=dict(gridcolor="rgba(255,255,255,0.03)", tickformat=",.0f"),
-        template="plotly_dark",
-        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis=dict(tickmode="linear", tick0=0, dtick=2, gridcolor="rgba(122,85,34,0.15)"),
+        yaxis=dict(gridcolor="rgba(122,85,34,0.15)", tickformat=",.0f"),
+        template="plotly_dark"
+        ).update_layout(),
+        plot_bgcolor="rgba(26,16,5,0)",
         paper_bgcolor="rgba(0,0,0,0)",
         height=450,
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, bgcolor="rgba(13,16,19,0.85)")
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, bgcolor="rgba(26,16,5,0.9)")
     )
     
     st.plotly_chart(fig_mc, use_container_width=True)
@@ -616,9 +737,10 @@ with tab3:
         
         fig_violin.update_layout(
             yaxis_title="Profit Bersih (Rupiah)",
-            yaxis=dict(gridcolor="rgba(255,255,255,0.03)", tickformat=",.0f"),
-            template="plotly_dark",
-            plot_bgcolor="rgba(0,0,0,0)",
+            yaxis=dict(gridcolor="rgba(122,85,34,0.15)", tickformat=",.0f"),
+            template="plotly_dark"
+        ).update_layout(),
+            plot_bgcolor="rgba(26,16,5,0)",
             paper_bgcolor="rgba(0,0,0,0)",
             height=380,
             margin=dict(l=40, r=40, t=20, b=40)
